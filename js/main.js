@@ -10,8 +10,6 @@ console.log("Target word: " + targetWord)
 var targetWordState = targetWord.toLowerCase().split("");
 
 var notInWord = ""
-//Find number of letters.
-//console.log("Target Word Length: " + targetWord.length)
 
 //Define variable at top only prosess once. 
 var guessCount = 0;
@@ -34,8 +32,6 @@ livesRemaining = (11 - guessCount)
 function userGuess() {
     var input = document.getElementById("userGuess")
     
-    //console.log("Input Character: " + input.value)
-    
     checkGuess(input.value)
 
     //Clear userGuess.
@@ -55,7 +51,6 @@ document.getElementById("userGuess").addEventListener("keydown", function(event)
 function checkGuess(guess) {
 
     //Test lowercase word against lowercase guess.
-    //Hint: use https://www.w3schools.com/jsref/jsref_tolowercase.asp
     var lowercaseGuess = guess.toLowerCase();
     var guessIndex = targetWordState.indexOf(lowercaseGuess);
 
@@ -70,7 +65,6 @@ function checkGuess(guess) {
         gameWord = setCharAt(gameWord, guessIndex, guess)
         
         //Update the game word with the letter that the user has guessed.
-        //console.log("Updated gameWord: " + gameWord)
 
         //Set innerHTML of letters container to be gameWord.
         document.getElementById("letters-container").innerHTML = gameWord;
@@ -88,10 +82,6 @@ function checkGuess(guess) {
         //Make the guessCount increment every time that the user gets a letter wrong.
         functionsArray[guessCount]()
         guessCount = guessCount + 1;
-
-
-
-        //console.log("Lives used: " + guessCount)
 
             notInWord = notInWord + guess;
             document.getElementById("failedChar").innerHTML = "Used Characters: " + notInWord;
@@ -122,9 +112,10 @@ function textStop() {
 }
 
 
+
 //Canvas Hangman
 //
-
+//Array of the canvas functions.
 var functionsArray = [
     hangmanStandBottom,
     hangmanStandSide,
@@ -138,16 +129,6 @@ var functionsArray = [
     hangmanLeftArm,
     hangmanRightArm
 ]
-
-var c = document.getElementById("hangmanCanvas");
-var canvasWidth = c.width
-var canvasHeight = c.height
-var headCenterY = 100
-var headRadius = 25
-var legEndY = 400
-var armStartX = 250
-var armStartY = 200
-var armHeight = 200
 
 //Stand Bottom
 function hangmanStandBottom(){
