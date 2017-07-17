@@ -41,8 +41,6 @@ function userGuess() {
 //Make the enter button submit the text field.
 document.getElementById("userGuess").addEventListener("keydown", function(event) {
     if (event.keyCode == 13) {
-        //console.log("")
-
         userGuess()
     }
 });
@@ -54,8 +52,10 @@ function checkGuess(guess) {
     var lowercaseGuess = guess.toLowerCase();
     var guessIndex = targetWordState.indexOf(lowercaseGuess);
 
+    if (letterAlreadyUsed > -1) {
+    document.getElementById("usedWord").innerHTML  = "";
     //console.log("Guess Index: " + guessIndex)
-
+    }
     if (guessIndex > -1)
     {
         //Check off letters from targetState
@@ -63,8 +63,6 @@ function checkGuess(guess) {
 
         //Set char at on game word (guessIndex) to be guess.
         gameWord = setCharAt(gameWord, guessIndex, guess)
-        
-        //Update the game word with the letter that the user has guessed.
 
         //Set innerHTML of letters container to be gameWord.
         document.getElementById("letters-container").innerHTML = gameWord;
@@ -75,31 +73,37 @@ function checkGuess(guess) {
 
         if (gameWord.toLowerCase() == targetWord.toLowerCase()){
             document.getElementById("gameWon").innerHTML = "Game Won!";
-
             textStop()
         }
     } else {
-        //Make the guessCount increment every time that the user gets a letter wrong.
-        functionsArray[guessCount]()
-        guessCount = guessCount + 1;
+        
+        var letterAlreadyUsed = notInWord.indexOf(guess) 
+        //console.log('Not in word is: ' + notInWord + " and the guess: " + guess + " has an index of: " + letterAlreadyUsed)           
+        if (letterAlreadyUsed > -1) {
+            document.getElementById("usedWord").innerHTML  = "That letter has already been used";
+        } else {
+
+            //Make the guessCount increment every time that the user gets a letter wrong.
+            functionsArray[guessCount]()
+            guessCount = guessCount + 1;
 
             notInWord = notInWord + guess;
             document.getElementById("failedChar").innerHTML = "Used Characters: " + notInWord;
 
-        //When the user gets 6 attempts wrong it will end the game.
-        document.getElementById("lives-remain").innerHTML = (11 - guessCount);
-        document.getElementById("lives-used").innerHTML = guessCount;
+            //When the user gets 11 attempts wrong it will end the game.
+            document.getElementById("lives-remain").innerHTML = (11 - guessCount);
+            document.getElementById("lives-used").innerHTML = guessCount;
 
-        if (guessCount == 11) {
-            document.getElementById("gameLost").innerHTML = "Game Lost!";
-
-            textStop()
-
+            if (guessCount == 11) {
+                document.getElementById("answer").innerHTML = "The word was " + targetWord;
+                document.getElementById("gameLost").innerHTML = "Game Lost!" ;
+                textStop()
+                }
+            }
         }
     }
-}
 
-//The index that the user has guessed is then replaced with a underscore call at setCharAt (line: 74)
+//The index that the user has guessed is then replaced with a underscore call at setCharAt (line: 64)
 function setCharAt(str,index,chr) {
     if(index > str.length-1) return str;
         return str.substr(0,index) + chr + str.substr(index+1);
@@ -110,8 +114,6 @@ function textStop() {
     if (guessCount == 11, gameWord == targetWord);
         document.getElementById("userGuess").disabled = true;
 }
-
-
 
 //Canvas Hangman
 //
@@ -129,6 +131,16 @@ var functionsArray = [
     hangmanLeftArm,
     hangmanRightArm
 ]
+
+var c = document.getElementById("hangmanCanvas");
+var canvasWidth = c.width
+var canvasHeight = c.height
+var headCenterY = 100
+var headRadius = 35
+var legEndY = 400
+var armStartX = 250
+var armStartY = 200
+var armHeight = 200
 
 //Stand Bottom
 function hangmanStandBottom(){
