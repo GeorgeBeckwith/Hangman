@@ -39,10 +39,13 @@ function userGuess() {
 }
 
 //Make the enter button submit the text field.
-document.getElementById("userGuess").addEventListener("keydown", function(event) {
+document.getElementById("userGuess").addEventListener("keypress", function(event) {
     if (event.keyCode == 13) {
+    //if (event.keyCode >= 65 && event.keyCode <= 90) {
+        console.log("Thats a letter ")
         userGuess()
     }
+    
 });
 
 //Check to where the users guess is in the word and out put the index to the console.
@@ -52,10 +55,9 @@ function checkGuess(guess) {
     var lowercaseGuess = guess.toLowerCase();
     var guessIndex = targetWordState.indexOf(lowercaseGuess);
 
-    if (letterAlreadyUsed > -1) {
+    
     document.getElementById("usedWord").innerHTML  = "";
     //console.log("Guess Index: " + guessIndex)
-    }
     if (guessIndex > -1)
     {
         //Check off letters from targetState
@@ -81,6 +83,7 @@ function checkGuess(guess) {
         //console.log('Not in word is: ' + notInWord + " and the guess: " + guess + " has an index of: " + letterAlreadyUsed)           
         if (letterAlreadyUsed > -1) {
             document.getElementById("usedWord").innerHTML  = "That letter has already been used";
+
         } else {
 
             //Make the guessCount increment every time that the user gets a letter wrong.
