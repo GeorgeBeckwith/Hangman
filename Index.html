@@ -8,7 +8,7 @@
     </head>
     <body>
         <input id="restartButton" type="button" value="Restart" onClick="window.location.reload()">
-        <h1><center>Hangman</center></h1>
+        <h1 id ="hangmanTitle"><center>Hangman</center></h1>
         <div align="middle">
             <label>Lives used: </label>
             <label id="lives-used">
@@ -18,7 +18,9 @@
             <label id="lives-remain">
         </div>
         <br />
+        <br />
         <div id="letters-container" align="middle" autocomplete="off"></div>
+        <br />
         <br />
         <div align ="middle">
             <input id="userGuess" maxlength="1" autocomplete="off"/>
@@ -34,10 +36,8 @@
         <br />
         <br />
         <div align="center">
-            <canvas id="hangmanCanvas" width="500" height="500" align"middle" ></canvas>
-        </div>
-        <br />
-        <br />        
+            <canvas id="hangmanCanvas" width="200" height="200" align"middle" ></canvas>
+        </div>      
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="js/main.js"></script>
     </body>

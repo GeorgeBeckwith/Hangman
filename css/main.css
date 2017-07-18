@@ -2,10 +2,6 @@ body {
     background-color: #00CED1;
 }
 
-h1 {
-    font-family: Anton;
-}
-
 #letters-container {
     letter-spacing: 10px;
 
@@ -16,11 +12,16 @@ h1 {
 }
 
 #gameWon {
-    font-size: 60px;
+    font-size: 45px;
     font-family: Anton;
 }
 
 #gameLost {
-    font-size: 60px;
+    font-size: 45px;
     font-family: Antont;
+}
+
+#hangmanTitle {
+    font-size: 60px;
+    font-family: Anton;
 }

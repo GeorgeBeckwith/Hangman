@@ -5,7 +5,7 @@ var words = ['Blue', 'Red', 'Yellow', 'Green', 'Orange', 'Purple', 'Pink', 'Whit
 //Randomise the variables for output.
 var targetWord = words[Math.floor(Math.random() * words.length)];
 
-console.log("Target word: " + targetWord)
+//console.log("Target word: " + targetWord)
 //Splits the word into an array of each character.
 var targetWordState = targetWord.toLowerCase().split("");
 
@@ -42,7 +42,7 @@ function userGuess() {
 document.getElementById("userGuess").addEventListener("keypress", function(event) {
     if (event.keyCode == 13) {
     //if (event.keyCode >= 65 && event.keyCode <= 90) {
-        console.log("Thats a letter ")
+        console.log("Thats a letter")
         userGuess()
     }
     
@@ -82,7 +82,7 @@ function checkGuess(guess) {
         var letterAlreadyUsed = notInWord.indexOf(guess) 
         //console.log('Not in word is: ' + notInWord + " and the guess: " + guess + " has an index of: " + letterAlreadyUsed)           
         if (letterAlreadyUsed > -1) {
-            document.getElementById("usedWord").innerHTML  = "That letter has already been used";
+            document.getElementById("usedWord").innerHTML  = "That letter has already been used already!";
 
         } else {
 
@@ -138,19 +138,19 @@ var functionsArray = [
 var c = document.getElementById("hangmanCanvas");
 var canvasWidth = c.width
 var canvasHeight = c.height
-var headCenterY = 100
-var headRadius = 35
-var legEndY = 400
-var armStartX = 250
-var armStartY = 200
-var armHeight = 200
+var headCenterY = 30
+var headRadius = 15
+var legEndY = 150
+var armStartX = 100
+var armStartY = 75
+var armHeight = 75
 
 //Stand Bottom
 function hangmanStandBottom(){
     var ctx = c.getContext("2d");
     ctx.beginPath();
-    ctx.moveTo(500, 500);
-    ctx.lineTo(175, 500);
+    ctx.moveTo(200, 200);
+    ctx.lineTo(75, 200);
     ctx.stroke();
 }
 
@@ -158,8 +158,8 @@ function hangmanStandBottom(){
 function hangmanStandSide(){
     var ctx = c.getContext("2d");
     ctx.beginPath();
-    ctx.moveTo(500, 500);
-    ctx.lineTo(500, 0);
+    ctx.moveTo(200, 200);
+    ctx.lineTo(200, 0);
     ctx.stroke();
 }
 
@@ -167,8 +167,8 @@ function hangmanStandSide(){
 function hangmanStandTop(){
     var ctx = c.getContext("2d");
     ctx.beginPath();
-    ctx.moveTo(250, 0);
-    ctx.lineTo(500, 0);
+    ctx.moveTo(100, 0);
+    ctx.lineTo(200, 0);
     ctx.stroke();
 }
 
@@ -176,8 +176,8 @@ function hangmanStandTop(){
 function hangmanStandCorner(){
     var ctx = c.getContext("2d");
     ctx.beginPath();
-    ctx.moveTo(450, 0);
-    ctx.lineTo(500, 50);
+    ctx.moveTo(175, 0);
+    ctx.lineTo(200, 20);
     ctx.stroke();
 }
 
@@ -185,8 +185,8 @@ function hangmanStandCorner(){
 function hangmanNoose(){
     var ctx = c.getContext("2d");
     ctx.beginPath();
-    ctx.moveTo(250, 0);
-    ctx.lineTo(250, headCenterY - headRadius);
+    ctx.moveTo(100, 0);
+    ctx.lineTo(100, headCenterY - headRadius);
     ctx.stroke();
 }
 
@@ -213,7 +213,7 @@ function hangmanLeftLeg(){
     var ctx = c.getContext("2d");
     ctx.beginPath();
     ctx.moveTo(canvasWidth / 2, canvasHeight / 2);
-    ctx.lineTo(150, legEndY);
+    ctx.lineTo(70, legEndY);
     ctx.stroke();
 }
 
@@ -222,7 +222,7 @@ function hangmanRightLeg(){
     var ctx = c.getContext("2d");
     ctx.beginPath();
     ctx.moveTo(canvasWidth / 2, canvasHeight / 2);
-    ctx.lineTo(350, legEndY);
+    ctx.lineTo(130, legEndY);
     ctx.stroke();
 }
 
@@ -231,7 +231,7 @@ function hangmanLeftArm(){
     var ctx = c.getContext("2d");
     ctx.beginPath();
     ctx.moveTo(armStartX, armStartY);
-    ctx.lineTo(150, armHeight);
+    ctx.lineTo(70, armHeight);
     ctx.stroke();
 }
 
@@ -240,6 +240,6 @@ function hangmanRightArm(){
     var ctx = c.getContext("2d");
     ctx.beginPath();
     ctx.moveTo(armStartX, armStartY);
-    ctx.lineTo(350, armHeight);
+    ctx.lineTo(130, armHeight);
     ctx.stroke();
 }
