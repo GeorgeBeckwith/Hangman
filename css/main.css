@@ -13,12 +13,12 @@ body {
 }
 
 #gameWon {
-    font-size: 35px;
+    font-size: 30px;
     font-family: 'Gloria Hallelujah';
 }
 
 #gameLost {
-    font-size: 35px;
+    font-size: 30px;
     font-family: 'Gloria Hallelujah';
 }
 

@@ -1,6 +1,6 @@
 //Run the html before the javascript put javascript at the bottom of the page.
 //Add an array with the words in.
-var words = ['Blue', 'Red', 'Yellow', 'Green', 'Orange', 'Purple', 'Pink', 'White', 'Black', 'Grey']
+    //var words = ['Blue', 'Red', 'Yellow', 'Green', 'Orange', 'Purple', 'Pink', 'White', 'Black', 'Grey']
 
 //Hangman canvas
 var c = document.getElementById("hangmanCanvas");
@@ -12,52 +12,80 @@ var legEndY = 150
 var armStartX = 100
 var armStartY = 75
 var armHeight = 75
-
 //Randomise the variables for output.
-var targetWord = words[Math.floor(Math.random() * words.length)];
+    //var targetWord = words[Math.floor(Math.random() * words.length)];
 
 //console.log("Target word: " + targetWord)
 //Splits the word into an array of each character.
-var targetWordState = targetWord.toLowerCase().split("");
 
 var notInWord = ""
 
+
 //Define variable at top only prosess once. 
-var guessCount = 0;
+var guessCount = 0
 
 //Add for each loop for all letters in word.
-var gameWord = "";
-
-for (var i = 0; i < targetWord.length; i++) {
-    //Replaces the word with underscores.
-    gameWord += "_";
-};
+var gameWord = ""
 
 //Use outside the for loop.
-document.getElementById("letters-container").innerHTML = gameWord;
 
 //Lives remainng.
 livesRemaining = (11 - guessCount)
 
-//Output the users input and link to function checkGuess.
-function userGuess() {
-    var input = document.getElementById("userGuess")
-    
-    checkGuess(input.value)
 
-    //Clear userGuess.
-    document.getElementById('userGuess').value = '';
-}
+
+var targetWord = "";
+var targetWordState = "";
 
 //Make the enter button submit the text field.
 document.getElementById("userGuess").addEventListener("keypress", function(event) {
     if (event.keyCode == 13) {
     //if (event.keyCode >= 65 && event.keyCode <= 90) {
-        console.log("Thats a letter")
+    //console.log("Thats a letter")
         userGuess()
     }
     
 });
+
+
+function GetRandomWord() {
+    console.log('Requesting Random Word');
+
+    var requestStr = "http://setgetgo.com/randomword/get.php";
+
+    $.ajax({
+        type: "GET",
+        url: requestStr,
+        dataType: "jsonp",
+        jsonpCallback: 'RandomWordReceived'
+    });
+}
+
+function RandomWordReceived(data) {
+    console.log('Random Word Recieved: ' + data.Word);
+
+    targetWord = data.Word;
+    targetWordState = targetWord.toLowerCase().split("");
+    
+    for (var i = 0; i < targetWord.length; i++) {
+        //Replaces the word with underscores.
+        gameWord += "_";
+    };
+
+    document.getElementById("letters-container").innerHTML = gameWord;
+
+    //enable inputs here
+}
+
+//Output the users input and link to function checkGuess.
+function userGuess() {
+    var input = document.getElementById("userGuess")
+
+    checkGuess(input.value)
+
+    //Clear userGuess.
+    document.getElementById('userGuess').value = '';
+}
 
 //Check to where the users guess is in the word and out put the index to the console.
 function checkGuess(guess) {
@@ -66,7 +94,7 @@ function checkGuess(guess) {
     var lowercaseGuess = guess.toLowerCase();
     var guessIndex = targetWordState.indexOf(lowercaseGuess);
 
-    
+
     document.getElementById("usedWord").innerHTML  = "";
     //console.log("Guess Index: " + guessIndex)
     if (guessIndex > -1)
@@ -92,7 +120,7 @@ function checkGuess(guess) {
         var letterAlreadyUsed = notInWord.indexOf(guess) 
         //console.log('Not in word is: ' + notInWord + " and the guess: " + guess + " has an index of: " + letterAlreadyUsed)           
         if (letterAlreadyUsed > -1) {
-            document.getElementById("usedWord").innerHTML  = "That letter has already been guessed already!";
+            document.getElementById("usedWord").innerHTML  = "That letter has been guessed already!";
 
         } else {
 
@@ -243,3 +271,5 @@ function hangmanRightArm(){
     ctx.lineTo(130, armHeight);
     ctx.stroke();
 }
+
+GetRandomWord()
