@@ -2,13 +2,17 @@
 <html>
     <head>
         <link href="css/main.css" rel="stylesheet"/>
+        <link href='https://fonts.googleapis.com/css?family=Gloria Hallelujah' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Hangman</title>
         <link rel="shortcut icon" href="/Users/george.beckwith/Documents/Hangman/img/Hangman.png">
     </head>
     <body>
-        <input id="restartButton" type="button" value="Restart" onClick="window.location.reload()">
-        <h1 id ="hangmanTitle"><center>Hangman</center></h1>
+        <div>
+            <input id="restartButton" type="button" value="Restart" onClick="window.location.reload()">
+            <h1 id ="hangmanTitle"><center>Hangman</center></h1>
+        </div>
         <div align="middle">
             <label>Lives used: </label>
             <label id="lives-used">
@@ -18,22 +22,19 @@
             <label id="lives-remain">
         </div>
         <br />
-        <br />
         <div id="letters-container" align="middle" autocomplete="off"></div>
         <br />
         <br />
         <div align ="middle">
             <input id="userGuess" maxlength="1" autocomplete="off" placeholder="Please enter a letter" />
-            <button onclick="userGuess()">Guess</button>
+            <button id="guessButton"onclick="userGuess()">Guess</button>
         </div>
-        <br />
         <br />
         <div id="failedChar" align="middle"></div>
         <div id="gameWon" align="middle"></div>
         <div id="gameLost" align="middle"></div>
         <p id="answer" align="middle"> </p>
         <p id="usedWord" align="middle" > </p>
-        <br />
         <br />
         <div align="center">
             <canvas id="hangmanCanvas" width="200" height="200" align"middle" ></canvas>

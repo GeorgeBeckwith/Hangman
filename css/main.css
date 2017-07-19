@@ -1,5 +1,6 @@
 body {
     background-color: #00CED1;
+    font-family: 'Indie Flower';
 }
 
 #letters-container {
@@ -13,15 +14,23 @@ body {
 
 #gameWon {
     font-size: 45px;
-    font-family: Anton;
+    font-family: 'Gloria Hallelujah';
 }
 
 #gameLost {
     font-size: 45px;
-    font-family: Antont;
+    font-family: 'Gloria Hallelujah';
 }
 
 #hangmanTitle {
     font-size: 60px;
-    font-family: Anton;
+    font-family: 'Gloria Hallelujah';
+}
+
+#userGuess {
+    font-family: 'Indie Flower';
+}
+
+#guessButton {
+    font-family: 'Indie Flower';
 }
