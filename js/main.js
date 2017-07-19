@@ -2,6 +2,17 @@
 //Add an array with the words in.
 var words = ['Blue', 'Red', 'Yellow', 'Green', 'Orange', 'Purple', 'Pink', 'White', 'Black', 'Grey']
 
+//Hangman canvas
+var c = document.getElementById("hangmanCanvas");
+var canvasWidth = c.width
+var canvasHeight = c.height
+var headCenterY = 30
+var headRadius = 15
+var legEndY = 150
+var armStartX = 100
+var armStartY = 75
+var armHeight = 75
+
 //Randomise the variables for output.
 var targetWord = words[Math.floor(Math.random() * words.length)];
 
@@ -106,7 +117,7 @@ function checkGuess(guess) {
         }
     }
 
-//The index that the user has guessed is then replaced with a underscore call at setCharAt (line: 64)
+//The index that the user has guessed is then replaced with a underscore call at setCharAt (line: 78)
 function setCharAt(str,index,chr) {
     if(index > str.length-1) return str;
         return str.substr(0,index) + chr + str.substr(index+1);
@@ -134,16 +145,6 @@ var functionsArray = [
     hangmanLeftArm,
     hangmanRightArm
 ]
-
-var c = document.getElementById("hangmanCanvas");
-var canvasWidth = c.width
-var canvasHeight = c.height
-var headCenterY = 30
-var headRadius = 15
-var legEndY = 150
-var armStartX = 100
-var armStartY = 75
-var armHeight = 75
 
 //Stand Bottom
 function hangmanStandBottom(){
