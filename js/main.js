@@ -89,11 +89,10 @@ function checkGuess(guess) {
             textStop()
         }
     } else {
-        
         var letterAlreadyUsed = notInWord.indexOf(guess) 
         //console.log('Not in word is: ' + notInWord + " and the guess: " + guess + " has an index of: " + letterAlreadyUsed)           
         if (letterAlreadyUsed > -1) {
-            document.getElementById("usedWord").innerHTML  = "That letter has already been used already!";
+            document.getElementById("usedWord").innerHTML  = "That letter has already been guessed already!";
 
         } else {
 
