@@ -49,7 +49,7 @@ document.getElementById("userGuess").addEventListener("keypress", function(event
 function GetRandomWord() {
     console.log('Requesting Random Word');
 
-    var requestStr = "http://setgetgo.com/randomword/get.php";
+    var requestStr = "https://setgetgo.com/randomword/get.php";
 
     $.ajax({
         type: "GET",
