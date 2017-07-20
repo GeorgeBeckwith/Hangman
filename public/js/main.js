@@ -1,9 +1,7 @@
 //Run the html before the javascript put javascript at the bottom of the page.
 //Add an array with the words in.
     //var words = ['Blue', 'Red', 'Yellow', 'Green', 'Orange', 'Purple', 'Pink', 'White', 'Black', 'Grey']
-
-//Hangman canvas
-var c = document.getElementById("hangmanCanvas");
+var c = document.getElementById("hangmanCanvas"); //Hangman canvas
 var canvasWidth = c.width
 var canvasHeight = c.height
 var headCenterY = 30
@@ -12,31 +10,15 @@ var legEndY = 150
 var armStartX = 100
 var armStartY = 75
 var armHeight = 75
-//Randomise the variables for output.
-    //var targetWord = words[Math.floor(Math.random() * words.length)];
-
+//var targetWord = words[Math.floor(Math.random() * words.length)]; //Randomise the variables for output.
 //console.log("Target word: " + targetWord)
-//Splits the word into an array of each character.
-
 var notInWord = ""
-
-//Define variable at top only prosess once. 
-var guessCount = 0
-
-//Add for each loop for all letters in word.
-var gameWord = ""
-
-//Use outside the for loop.
-
-//Lives remainng.
-livesRemaining = (11 - guessCount)
-
-
+var guessCount = 0 //Define variable at top only so that prosess once.
+var gameWord = "" //Add for each loop for all letters in word.
 var targetWord = "";
 var targetWordState = "";
-
-//Make the enter button submit the text field.
-document.getElementById("userGuess").addEventListener("keypress", function(event) {
+livesRemaining = (11 - guessCount) //Lives remainng.
+document.getElementById("userGuess").addEventListener("keypress", function(event) { //Make the enter button submit the text field.
     if (event.keyCode == 13) {
     //if (event.keyCode >= 65 && event.keyCode <= 90) {
     //console.log("Thats a letter")
@@ -44,7 +26,6 @@ document.getElementById("userGuess").addEventListener("keypress", function(event
     }
     
 });
-
 
 function GetRandomWord() {
     console.log('Requesting Random Word');
@@ -68,51 +49,58 @@ function RandomWordReceived(data) {
     numberOfDuplicates()
     
     for (var i = 0; i < targetWord.length; i++) {
-        //Replaces the word with underscores.
-        gameWord += "_";
+        gameWord += "_"; //Replaces the word with underscores.
     };
 
-    document.getElementById("letters-container").innerHTML = gameWord;
+    document.getElementById("letters-container").innerHTML = gameWord; //Use outside the for loop.
 }
 
-function numberOfDuplicates(guess) {
-    var re = new RegExp(char);
-    return string.match(re).length;
+function numberOfDuplicates(){
+
 }
 
-//Output the users input and link to function checkGuess.
 function userGuess() {
-    var input = document.getElementById("userGuess")
+    var input = document.getElementById("userGuess") //Output the users input and link to function checkGuess.
 
     checkGuess(input.value)
 
-    //Clear userGuess.
-    document.getElementById('userGuess').value = '';
+    document.getElementById('userGuess').value = ''; //Clear userGuess.
 }
 
-//Check to where the users guess is in the word and out put the index to the console.
-function checkGuess(guess) {
+function checkGuess(guess) { //Check to where the users guess is in the word and out put the index to the console.
+    var lowercaseGuess = guess.toLowerCase(); //Test lowercase word against lowercase guess.
+    
+    // We need a for loop here
+    // loops through all the characters in targetWordState
+    // create a list of indexes
 
-    //Test lowercase word against lowercase guess.
-    var lowercaseGuess = guess.toLowerCase();
-    var guessIndex = targetWordState.indexOf(lowercaseGuess);
+    var guessMatches = []
+    for (var i = 0; i <targetWordState.length; i++) {
+        var char = targetWordState[i]
 
+        if (char == guess){
+            guessMatches.push(i)
+        }
+    }
+
+    //var guessIndex = targetWordState.indexOf(lowercaseGuess);
 
     document.getElementById("usedWord").innerHTML  = "";
     //console.log("Guess Index: " + guessIndex)
-    if (guessIndex > -1)
+    if (guessMatches.length > 0)
     {
-        //Check off letters from targetState
-        targetWordState[guessIndex] = null;
+        for (var i = 0; i< guessMatches.length; i++){
+            var targetIndex = guessMatches[i];
 
-        //Set char at on game word (guessIndex) to be guess.
-        gameWord = setCharAt(gameWord, guessIndex, guess)
+            targetWordState[targetIndex] = null; //Check off letters from targetState
 
-        //Set innerHTML of letters container to be gameWord.
-        document.getElementById("letters-container").innerHTML = gameWord;
+            gameWord = setCharAt(gameWord, targetIndex, guess)
+        }
+ //Set char at on game word (guessIndex) to be guess.
 
-        // CHECK TO SEE IF GAME HAS BEEN WON
-        document.getElementById("lives-remain").innerHTML = (11 - guessCount);
+        document.getElementById("letters-container").innerHTML = gameWord; //Set innerHTML of letters container to be gameWord.
+
+        document.getElementById("lives-remain").innerHTML = (11 - guessCount); //CHECK TO SEE IF GAME HAS BEEN WON
         document.getElementById("lives-used").innerHTML = guessCount;
 
         if (gameWord.toLowerCase() == targetWord.toLowerCase()){
@@ -127,15 +115,13 @@ function checkGuess(guess) {
 
         } else {
 
-            //Make the guessCount increment every time that the user gets a letter wrong.
-            functionsArray[guessCount]()
+            functionsArray[guessCount]() //Make the guessCount increment every time that the user gets a letter wrong.
             guessCount = guessCount + 1;
 
             notInWord = notInWord + guess;
             document.getElementById("failedChar").innerHTML = "Used Characters: " + notInWord;
 
-            //When the user gets 11 attempts wrong it will end the game.
-            document.getElementById("lives-remain").innerHTML = (11 - guessCount);
+            document.getElementById("lives-remain").innerHTML = (11 - guessCount); //When the user gets 11 attempts wrong it will end the game.
             document.getElementById("lives-used").innerHTML = guessCount;
 
             if (guessCount == 11) {
@@ -147,22 +133,19 @@ function checkGuess(guess) {
         }
     }
 
-//The index that the user has guessed is then replaced with a underscore call at setCharAt (line: 78)
-function setCharAt(str,index,chr) {
+
+function setCharAt(str,index,chr) { // The index that the user has guessed is then replaced with a underscore call at setCharAt (line: 78)
     if(index > str.length-1) return str;
         return str.substr(0,index) + chr + str.substr(index+1);
 }
 
-//Makes the text box unusable after the game has been won/lost.
-function textStop() {
+function textStop() { //Makes the text box unusable after the game has been won/lost.
     if (guessCount == 11, gameWord == targetWord);
         document.getElementById("userGuess").disabled = true;
 }
 
 //Canvas Hangman
-//
-//Array of the canvas functions.
-var functionsArray = [
+var functionsArray = [ //Array of the canvas functions.
     hangmanStandBottom,
     hangmanStandSide,
     hangmanStandTop,
