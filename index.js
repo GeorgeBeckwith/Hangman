@@ -8,8 +8,9 @@ var app = express()
 
 app.get('/', function(req, res){
     console.log('Root requested');
+    console.log('Get file at ' +  path.join(__dirname, 'public/index.html'));
 
-    res.sendFile(path.join(__dirname, './public/index.html'));
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 server.listen(process.env.PORT || 3000, error => {
