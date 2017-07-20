@@ -64,6 +64,8 @@ function RandomWordReceived(data) {
 
     targetWord = data.Word;
     targetWordState = targetWord.toLowerCase().split("");
+
+    numberOfDuplicates()
     
     for (var i = 0; i < targetWord.length; i++) {
         //Replaces the word with underscores.
@@ -71,6 +73,11 @@ function RandomWordReceived(data) {
     };
 
     document.getElementById("letters-container").innerHTML = gameWord;
+}
+
+function numberOfDuplicates(guess) {
+    var re = new RegExp(char);
+    return string.match(re).length;
 }
 
 //Output the users input and link to function checkGuess.
