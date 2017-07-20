@@ -7,17 +7,15 @@ var server = require('http').Server(app)
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-    console.log('Root requested');
-    console.log('Get file at ' +  path.join(__dirname, 'public/index.html'));
-
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-server.listen(process.env.PORT || 3000, error => {
+var port = process.env.PORT || 3000;
+server.listen(port, error => {
     if (error)
     {
         console.log('Server error: ' + error);
     }
 
-    console.log('Server started');
+    console.log('Server started. Visit http://localhost:' + port);
 })
