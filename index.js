@@ -1,12 +1,22 @@
 var express = require('express')
 var path = require('path')
+var server = require('http').Server(app)
  
 var app = express()
  
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, './public/index.html'));
+    console.log('Root requested');
+
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-app.listen(process.env.PORT || 3000)
+server.listen(process.env.PORT || 3000, error => {
+    if (error)
+    {
+        console.log('Server error: ' + error);
+    }
+
+    console.log('Server started');
+})
