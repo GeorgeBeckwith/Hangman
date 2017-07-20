@@ -20,7 +20,6 @@ var armHeight = 75
 
 var notInWord = ""
 
-
 //Define variable at top only prosess once. 
 var guessCount = 0
 
@@ -31,7 +30,6 @@ var gameWord = ""
 
 //Lives remainng.
 livesRemaining = (11 - guessCount)
-
 
 
 var targetWord = "";
@@ -73,8 +71,6 @@ function RandomWordReceived(data) {
     };
 
     document.getElementById("letters-container").innerHTML = gameWord;
-
-    //enable inputs here
 }
 
 //Output the users input and link to function checkGuess.
