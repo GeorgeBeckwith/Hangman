@@ -45,18 +45,12 @@ function RandomWordReceived(data) {
 
     targetWord = data.Word;
     targetWordState = targetWord.toLowerCase().split("");
-
-    numberOfDuplicates()
     
     for (var i = 0; i < targetWord.length; i++) {
         gameWord += "_"; //Replaces the word with underscores.
     };
 
     document.getElementById("letters-container").innerHTML = gameWord; //Use outside the for loop.
-}
-
-function numberOfDuplicates(){
-
 }
 
 function userGuess() {
@@ -69,49 +63,19 @@ function userGuess() {
 
 function checkGuess(guess) { //Check to where the users guess is in the word and out put the index to the console.
     var lowercaseGuess = guess.toLowerCase(); //Test lowercase word against lowercase guess.
-    
-    // We need a for loop here
-    // loops through all the characters in targetWordState
-    // create a list of indexes
 
-    var guessMatches = []
-    for (var i = 0; i <targetWordState.length; i++) {
-        var char = targetWordState[i]
-
-        if (char == guess){
-            guessMatches.push(i)
-        }
-    }
-
-    //var guessIndex = targetWordState.indexOf(lowercaseGuess);
+    var guessMatches = getGuessMatches(guess)
 
     document.getElementById("usedWord").innerHTML  = "";
-    //console.log("Guess Index: " + guessIndex)
-    if (guessMatches.length > 0)
-    {
-        for (var i = 0; i< guessMatches.length; i++){
-            var targetIndex = guessMatches[i];
 
-            targetWordState[targetIndex] = null; //Check off letters from targetState
-
-            gameWord = setCharAt(gameWord, targetIndex, guess)
-        }
- //Set char at on game word (guessIndex) to be guess.
-
-        document.getElementById("letters-container").innerHTML = gameWord; //Set innerHTML of letters container to be gameWord.
-
-        document.getElementById("lives-remain").innerHTML = (11 - guessCount); //CHECK TO SEE IF GAME HAS BEEN WON
-        document.getElementById("lives-used").innerHTML = guessCount;
-
-        if (gameWord.toLowerCase() == targetWord.toLowerCase()){
-            document.getElementById("gameWon").innerHTML = "Game Won!";
-            textStop()
-        }
+    if (guessMatches.length > 0) {
+        applyCorrectMatches(guessMatches, guess)
     } else {
         var letterAlreadyUsed = notInWord.indexOf(guess) 
         //console.log('Not in word is: ' + notInWord + " and the guess: " + guess + " has an index of: " + letterAlreadyUsed)           
         if (letterAlreadyUsed > -1) {
-            document.getElementById("usedWord").innerHTML  = "That letter has been guessed already!";
+            document.getElementById("usedWord").innerHTML  = "That letter has been used already!";
+
 
         } else {
 
@@ -132,6 +96,41 @@ function checkGuess(guess) { //Check to where the users guess is in the word and
             }
         }
     }
+
+function getGuessMatches(guess)
+{
+    var guessMatches = []
+    for (var i = 0; i <targetWordState.length; i++) {
+        var char = targetWordState[i]
+
+        if (char == guess){
+            guessMatches.push(i)
+        }
+    }
+
+    return guessMatches
+}
+
+function applyCorrectMatches(guessMatches, guess){
+    for (var i = 0; i< guessMatches.length; i++){
+        var targetIndex = guessMatches[i];
+
+        targetWordState[targetIndex] = null; //Check off letters from targetState
+
+        gameWord = setCharAt(gameWord, targetIndex, guess)
+    }
+    //Set char at on game word (guessIndex) to be guess.
+
+    document.getElementById("letters-container").innerHTML = gameWord; //Set innerHTML of letters container to be gameWord.
+
+    document.getElementById("lives-remain").innerHTML = (11 - guessCount); //CHECK TO SEE IF GAME HAS BEEN WON
+    document.getElementById("lives-used").innerHTML = guessCount;
+
+    if (gameWord.toLowerCase() == targetWord.toLowerCase()){
+        document.getElementById("gameWon").innerHTML = "Game Won!";
+        textStop()
+    }
+}
 
 
 function setCharAt(str,index,chr) { // The index that the user has guessed is then replaced with a underscore call at setCharAt (line: 78)
