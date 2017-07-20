@@ -1,0 +1,43 @@
+body {
+    background-color: #00CED1;
+    font-family: 'Indie Flower';
+}
+
+#letters-container {
+    letter-spacing: 10px;
+
+}
+
+#failedChar {
+    letter-spacing: 7px;
+}
+
+#gameWon {
+    font-size: 30px;
+    font-family: 'Gloria Hallelujah';
+}
+
+#gameLost {
+    font-size: 30px;
+    font-family: 'Gloria Hallelujah';
+}
+
+#hangmanTitle {
+    font-size: 40px;
+    font-family: 'Gloria Hallelujah';
+}
+
+#userGuess {
+    font-family: 'Indie Flower';
+}
+
+#guessButton {
+    font-family: 'Indie Flower';
+}
+
+#restartButton {
+    position:absolute;
+    transition: .5s ease;
+    top: 1%;
+    left: 0%;
+}
