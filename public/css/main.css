@@ -55,6 +55,13 @@ body {
     letter-spacing: 10px;
     position: absolute;
     left: 0;
+    top: 30%;
+    width: 100%;
+}
+
+#usedWord {
+    position: absolute;
+    left: 0;
     top: 35%;
     width: 100%;
 }
