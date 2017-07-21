@@ -9,6 +9,7 @@ George Beckwith
 
 Install node
 
-* `npm i`
+* To install npm `npm i`
 
-* `node index.js`
+* To start local server `node index.js`
+* See Evernote

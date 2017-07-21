@@ -15,7 +15,7 @@ var gameWord = "" //Add for each loop for all letters in word.
 var targetWord = "";
 var targetWordState = "";
 var letterAlreadyUsed = 0
-    
+
 //Canvas Hangman
 var functionsArray = [ //Array of the canvas functions.
     hangmanStandBottom,
