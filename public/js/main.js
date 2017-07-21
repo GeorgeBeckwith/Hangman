@@ -9,6 +9,7 @@ var legEndY = 150
 var armStartX = 100
 var armStartY = 75
 var armHeight = 75
+var gueses = ""
 var notInWord = ""
 var guessCount = 0 //Define variable at top only so that prosess once.
 var gameWord = "" //Add for each loop for all letters in word.
@@ -73,7 +74,6 @@ function checkGuess(guess) { //Check to where the users guess is in the word and
     document.getElementById("usedWord").innerHTML  = "";
 
     var lowercaseGuess = guess.toLowerCase();
-
     var guessMatches = getGuessMatches(lowercaseGuess)
     if (guessMatches.length > 0) {
         applyCorrectMatches(guessMatches, lowercaseGuess)
@@ -96,20 +96,26 @@ function applyCorrectMatches(guessMatches, guess){
 
     renderRemainingLives();
 
+    gueses = gueses + guess;
+
     if (gameWord.toLowerCase() == targetWord.toLowerCase()){
         renderGameWon()
         disableInputs()
     }
 }
+function letterUsed(){
+    document.getElementById("usedWord").innerHTML  = "That letter has been used already!";
+}
 
 function applyIncorrectMatches(guess) {
-    letterAlreadyUsed = notInWord.indexOf(guess)
+    letterAlreadyUsed = gueses.indexOf(guess)
 
     if (letterAlreadyUsed > -1) {
-        document.getElementById("usedWord").innerHTML  = "That letter has been used already!";
+        letterUsed()
     } else {
         guessAdd()
 
+        gueses = gueses + guess;
         notInWord = notInWord + guess;
         document.getElementById("failedChar").innerHTML = "Used Characters: " + notInWord;
 
