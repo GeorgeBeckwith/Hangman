@@ -30,20 +30,23 @@ document.getElementById("userGuess").addEventListener("keypress", function(event
 function GetRandomWord() {
     console.log('Requesting Random Word');
 
-    var requestStr = "http://setgetgo.com/randomword/get.php";
+    var requestStr = "/word";
 
     $.ajax({
         type: "GET",
         url: requestStr,
-        dataType: "jsonp",
-        jsonpCallback: 'RandomWordReceived'
+        dataType: "text",
+        success: RandomWordReceived,
+        error: function(err)  {
+            console.log("Error " + err)
+        }
     });
 }
 
-function RandomWordReceived(data) {
-    console.log('Random Word Recieved: ' + data.Word);
+function RandomWordReceived(word) {
+    console.log('Random Word Recieved: ' + word);
 
-    targetWord = data.Word;
+    targetWord = word;
     targetWordState = targetWord.toLowerCase().split("");
     
     for (var i = 0; i < targetWord.length; i++) {
@@ -72,30 +75,33 @@ function checkGuess(guess) { //Check to where the users guess is in the word and
         applyCorrectMatches(guessMatches, guess)
     } else {
         var letterAlreadyUsed = notInWord.indexOf(guess) 
-        //console.log('Not in word is: ' + notInWord + " and the guess: " + guess + " has an index of: " + letterAlreadyUsed)           
+
         if (letterAlreadyUsed > -1) {
             document.getElementById("usedWord").innerHTML  = "That letter has been used already!";
 
 
         } else {
-
-            functionsArray[guessCount]() //Make the guessCount increment every time that the user gets a letter wrong.
-            guessCount = guessCount + 1;
-
-            notInWord = notInWord + guess;
-            document.getElementById("failedChar").innerHTML = "Used Characters: " + notInWord;
-
-            document.getElementById("lives-remain").innerHTML = (11 - guessCount); //When the user gets 11 attempts wrong it will end the game.
-            document.getElementById("lives-used").innerHTML = guessCount;
-
-            if (guessCount == 11) {
-                document.getElementById("answer").innerHTML = "The word was " + targetWord;
-                document.getElementById("gameLost").innerHTML = "Game Lost!" ;
-                textStop()
-                }
-            }
+            guessLives(guess)
         }
     }
+}
+
+function guessLives(guess){
+    functionsArray[guessCount]() //Make the guessCount increment every time that the user gets a letter wrong.
+    guessCount = guessCount + 1;
+
+    notInWord = notInWord + guess;
+    document.getElementById("failedChar").innerHTML = "Used Characters: " + notInWord;
+
+    document.getElementById("lives-remain").innerHTML = (11 - guessCount); //When the user gets 11 attempts wrong it will end the game.
+    document.getElementById("lives-used").innerHTML = guessCount;
+
+    if (guessCount == 11) {
+        document.getElementById("answer").innerHTML = "The word was " + targetWord;
+        document.getElementById("gameLost").innerHTML = "Game Lost!";
+        textStop()
+    }
+}
 
 function getGuessMatches(guess)
 {
@@ -107,7 +113,6 @@ function getGuessMatches(guess)
             guessMatches.push(i)
         }
     }
-
     return guessMatches
 }
 
@@ -142,7 +147,7 @@ function textStop() { //Makes the text box unusable after the game has been won/
     if (guessCount == 11, gameWord == targetWord);
         document.getElementById("userGuess").disabled = true;
 }
-
+    
 //Canvas Hangman
 var functionsArray = [ //Array of the canvas functions.
     hangmanStandBottom,
