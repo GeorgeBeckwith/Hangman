@@ -1,6 +1,6 @@
 body {
     background-color: #00CED1;
-    font-family: 'Just Me Again Down Here';
+    font-family: 'Indie Flower';
     font-size: 25px;
 }
 
@@ -17,7 +17,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    font-family: 'Just Me Again Down Here';
+    font-family: 'Indie Flower';
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
@@ -67,7 +67,7 @@ body {
 }
 
 #userGuess {
-    font-family: 'Just Me Again Down Here';
+    font-family: 'Indie Flower';
     font-size: 16px;
     width: 110px;
 }
@@ -81,7 +81,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
-    font-family: 'Just Me Again Down Here';
+    font-family: 'Indie Flower';
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
