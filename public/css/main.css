@@ -32,6 +32,11 @@ body {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+.nameTagGeorgeBeckwith {
+    top: 100%;
+    left: 100%;
+}
+
 #hangmanTitle {
     font-size: 40px;
     font-family: 'Gloria Hallelujah';
@@ -141,3 +146,4 @@ body {
     top:70%;
     width: 100%;
 }
+
