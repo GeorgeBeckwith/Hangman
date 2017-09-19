@@ -1,3 +1,4 @@
+
 //Run the html before the javascript put javascript at the bottom of the page.
 //Add an array with the words in.
 var c = document.getElementById("hangmanCanvas"); //Hangman canvas
@@ -55,7 +56,7 @@ function GetRandomWord() {
 }
 
 function randomWordReceived(word) {
-    console.log('Random Word Recieved: ' + word);
+    //console.log('Random Word Recieved: ' + word);
     targetWord = word;
     targetWordState = targetWord.toLowerCase().split("");
     for (var i = 0; i < targetWord.length; i++) {
