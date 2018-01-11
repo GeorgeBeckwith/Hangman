@@ -42,26 +42,11 @@ document.getElementById("userGuess").addEventListener("keypress", function(event
 });
 
 function GetRandomWord() {
-    console.log('Requesting Random Word');
-    var requestStr = "/word";
-    $.ajax({
-        type: "GET",
-        url: requestStr,
-        dataType: "text",
-        success: randomWordReceived,
-        error: function(err)  {
-            console.log("Error " + err)
-        }
-    });
+    randomWordReceived()
 }
 
-function randomWordReceived(word) {
-    //console.log('Random Word Recieved: ' + word);
-    targetWord = word;
-    targetWordState = targetWord.toLowerCase().split("");
-    for (var i = 0; i < targetWord.length; i++) {
-        gameWord += "_"; //Replaces the word with underscores.
-    };
+function randomWordReceived() {
+    gameWord = getRandomWord();
     document.getElementById("letters-container").innerHTML = gameWord; //Use outside the for loop.
 }
 
