@@ -8,8 +8,10 @@ var server = require('http').Server(app)
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/word', function(req, res){
-    request('http://setgetgo.com/randomword/get.php').pipe(res)
+    request('http://www.watchout4snakes.com/wo4snakes/Random/RandomWord').pipe(res)
 })
+
+//http://setgetgo.com/randomword/get.php
 
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'public/index.html'));
