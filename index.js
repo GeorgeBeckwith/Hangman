@@ -1,3 +1,4 @@
+GetRandomWord
 var express = require('express')
 var path = require('path')
 var request = require('request')
@@ -8,7 +9,7 @@ var server = require('http').Server(app)
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/word', function(req, res){
-    request('http://www.watchout4snakes.com/wo4snakes/Random/RandomWord').pipe(res)
+    request('www.http://watchout4snakes.com/wo4snakes/Random/RandomWord').pipe(res
 })
 
 //http://setgetgo.com/randomword/get.php

@@ -1,3 +1,4 @@
+letters-container
 
 //Run the html before the javascript put javascript at the bottom of the page.
 //Add an array with the words in.
