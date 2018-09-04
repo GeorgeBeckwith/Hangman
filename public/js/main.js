@@ -34,7 +34,7 @@ var functionsArray = [ //Array of the canvas functions.
     hangmanRightArm
 ]
 
-livesRemaining = (11 - guessCount) //Lives remainng.
+livesRemaining = (11 - guessCount) //Lives remaining.
 
 document.getElementById("userGuess").addEventListener("keypress", function(event) { //Make the enter button submit the text field.
     if (event.keyCode == 13) {
