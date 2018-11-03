@@ -1,4 +1,3 @@
-letters-container
 
 //Run the html before the javascript put javascript at the bottom of the page.
 //Add an array with the words in.
@@ -18,6 +17,20 @@ var gameWord = "" //Add for each loop for all letters in word.
 var targetWord = "";
 var targetWordState = "";
 var letterAlreadyUsed = 0
+var words = ["ability", "according", "actually", "administration", "agreement", "beautiful", "behavior", 
+"between", "business", "board", "campaign", "candidate", "central", "certainly", "character", "daughter", 
+"democratic", "development", "discussion", "during", "economic", "education", "environmental", "everybody", 
+"experience", "family", "feeling", "fill", "financial", "foreign", "generation", "government", "growth", 
+"green", "glass", "happen", "health", "heavy", "himself", "hospital", "image", "including", "information", 
+"institution", "international", "job", "join", "just", "keep", "key", "kitchen", "knowledge", "know", "language", 
+"lawyer", "leader", "leave", "letter", "magazine", "maintain", "management", "manager", "material", "national", 
+"necessary", "newspaper", "none", "number", "official", "operation", "opportunity", "organization", "outside", 
+"particularly", "pattern", "performance", "personal", "player", "quality", "question", "quickly", "quite", 
+"race", "rather", "reality", "realize", "recognize", "same", "school", "scientist", "season", "seem", "talk", 
+"technology", "television", "themselves", "think", "understand", "until", "upon", "usually", "under", "violence", 
+"vote", "voice", "visit", "view", "wait", "walk", "want", "watch", "weapon", "yard", "year", "young", "yourself"];
+
+var word = words[Math.floor(Math.random()*words.length)];
 
 //Canvas Hangman
 var functionsArray = [ //Array of the canvas functions.
@@ -34,7 +47,7 @@ var functionsArray = [ //Array of the canvas functions.
     hangmanRightArm
 ]
 
-livesRemaining = (11 - guessCount) //Lives remaining.
+livesRemaining = (11 - guessCount) //Lives remainng.
 
 document.getElementById("userGuess").addEventListener("keypress", function(event) { //Make the enter button submit the text field.
     if (event.keyCode == 13) {
@@ -42,12 +55,28 @@ document.getElementById("userGuess").addEventListener("keypress", function(event
     }
 });
 
-function GetRandomWord() {
-    randomWordReceived()
-}
+/*function GetRandomWord() {
+    console.log('Requesting Random Word');
+    var requestStr = "/word";
+    $.ajax({
+        type: "GET",
+        url: requestStr,
+        dataType: "text",
+        success: randomWordReceived,
+        error: function(err)  {
+            console.log("Error " + err)
+        randomWordReceived(word) 
+        }
+    });
+}*/
 
-function randomWordReceived() {
-    gameWord = getRandomWord();
+function randomWordReceived(word) {
+    console.log('Random Word Received: ' + word);
+    targetWord = word;
+    targetWordState = targetWord.toLowerCase().split("");
+    for (var i = 0; i < targetWord.length; i++) {
+        gameWord += "_"; //Replaces the word with underscores.
+    };
     document.getElementById("letters-container").innerHTML = gameWord; //Use outside the for loop.
 }
 
@@ -255,4 +284,4 @@ function hangmanRightArm(){
     ctx.stroke();
 }
 
-GetRandomWord()
+randomWordReceived(word)
